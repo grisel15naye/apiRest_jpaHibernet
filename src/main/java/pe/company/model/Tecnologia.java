@@ -1,5 +1,6 @@
 package pe.company.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -25,6 +26,7 @@ public class Tecnologia implements Serializable {
     private LocalDateTime fregistro;
 
     @ManyToMany(mappedBy = "itemsTecnologia", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonBackReference
     private Set<Instructor> itemsInstructor=new HashSet<>();
 
     public Tecnologia(){}
