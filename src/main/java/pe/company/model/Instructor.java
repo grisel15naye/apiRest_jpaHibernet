@@ -1,5 +1,7 @@
 package pe.company.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -32,8 +34,11 @@ public class Instructor implements Serializable {
     @Column(nullable = false, updatable = false)
     private LocalDateTime fregistro;
 
+
     @OneToOne(mappedBy = "instructor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Conyuge conyuge;
+
 
     @OneToMany(mappedBy = "instructor")
     private Collection<Taller> itemsTaller=new ArrayList<>();

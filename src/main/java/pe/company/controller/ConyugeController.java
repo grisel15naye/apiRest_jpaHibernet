@@ -20,10 +20,39 @@ public class ConyugeController {
         Collection<Conyuge> itemsConyuge=conyugeService.findAll();
         return new ResponseEntity<>(itemsConyuge, HttpStatus.OK);
     }
+
+
+    @GetMapping("/buscar/{conyugeDni}")
+    private ResponseEntity<?> buscar (@PathVariable Long conyugeDni){
+        Conyuge conyuge= conyugeService.findById(conyugeDni);
+        if (conyuge!=null){
+            return new ResponseEntity<>(conyuge, HttpStatus.OK);
+        }
+        return new ResponseEntity<>("instructor no encotrado", HttpStatus.NOT_FOUND);
+    }
+
+
     @PostMapping("/agregar")
     public  ResponseEntity<?>agregar (@RequestBody Conyuge conyuge){
-        conyugeService.insert(conyuge);
-        return new ResponseEntity<>("conyuge "+conyuge.getNombre()+" correcta mente", HttpStatus.OK);
+        try {
+            conyugeService.insert(conyuge);
+            return new ResponseEntity<>("conyuge "+conyuge.getNombre()+" agregado correctamente", HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("error al agregar intente de nuevo", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+    @PutMapping("/editar/{conyugeDni}")
+    public ResponseEntity<?>editar (@PathVariable Long conyugeDni,
+                                    @RequestBody Conyuge conyuge){
+        Conyuge conyugeexistente=conyugeService.findById(conyugeDni);
+        if (conyugeexistente!=null){
+            conyugeexistente.setNombre(conyuge.getNombre());
+            conyugeService.update(conyugeexistente);
+            return new ResponseEntity<>("Conyuge "+conyugeexistente.getNombre()+" actualizado correctamente", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("no se puede actualizar los datos del conyuge", HttpStatus.NOT_FOUND);
+
     }
 
 }

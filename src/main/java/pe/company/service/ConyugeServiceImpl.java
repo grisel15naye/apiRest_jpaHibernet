@@ -33,8 +33,8 @@ public class ConyugeServiceImpl implements ConyugeService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Conyuge> findById(Long conyugeDni) {
-        return conyugeRepository.findById(conyugeDni);
+    public Conyuge findById(Long conyugeDni) {
+        return conyugeRepository.findById(conyugeDni).orElse(null);
     }
 
 
