@@ -1,5 +1,6 @@
 package pe.company.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -20,6 +21,7 @@ public class Taller implements Serializable {
     @ManyToOne
     @JoinColumn(name = "instructor_id", unique = false,
     foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (instructor_id) references instructor (instructor_id)"))
+    @JsonBackReference
     private Instructor instructor;
     public Taller(){}
 

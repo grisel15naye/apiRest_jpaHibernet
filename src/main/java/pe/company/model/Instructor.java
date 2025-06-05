@@ -41,6 +41,7 @@ public class Instructor implements Serializable {
 
 
     @OneToMany(mappedBy = "instructor")
+    @JsonManagedReference
     private Collection<Taller> itemsTaller=new ArrayList<>();
 
     @ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE})

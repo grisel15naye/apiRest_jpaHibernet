@@ -17,6 +17,9 @@ public class Tecnologia implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tecnologiaId;
 
+    @Column(nullable = false)
+    private String nombre;
+
     @CreationTimestamp
     @Column(nullable = false)
     private LocalDateTime fregistro;
@@ -26,11 +29,13 @@ public class Tecnologia implements Serializable {
 
     public Tecnologia(){}
 
-    public Tecnologia(Long tecnologiaId, LocalDateTime fregistro, Set<Instructor> itemsInstructor) {
+    public Tecnologia(Long tecnologiaId, String nombre,LocalDateTime fregistro, Set<Instructor> itemsInstructor) {
         super();
         this.tecnologiaId = tecnologiaId;
         this.fregistro = fregistro;
+        this.nombre=nombre;
         this.itemsInstructor = itemsInstructor;
+
     }
 
     public Long getTecnologiaId() {return tecnologiaId;}
@@ -39,4 +44,6 @@ public class Tecnologia implements Serializable {
     public void setFregistro(LocalDateTime fregistro) {this.fregistro = fregistro;}
     public Set<Instructor> getItemsInstructor() {return itemsInstructor;}
     public void setItemsInstructor(Set<Instructor> itemsInstructor) {this.itemsInstructor = itemsInstructor;}
+    public String getNombre() {return nombre;}
+    public void setNombre(String nombre) {this.nombre = nombre;}
 }

@@ -66,7 +66,7 @@ public class InstructorController {
             instructorService.update(instructorexistente);
             return new ResponseEntity<>("instructor"+instructorexistente.getNombre()+"actualizado correctamente",HttpStatus.OK);
         }
-        return new ResponseEntity<>("no se pudo actializar los datos del instructor", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Error al actualizar", HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/borrar/{instructorId}")

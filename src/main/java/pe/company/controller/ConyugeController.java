@@ -51,7 +51,7 @@ public class ConyugeController {
             conyugeService.update(conyugeexistente);
             return new ResponseEntity<>("Conyuge "+conyugeexistente.getNombre()+" actualizado correctamente", HttpStatus.OK);
         }
-        return new ResponseEntity<>("no se puede actualizar los datos del conyuge", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Error al actualizar", HttpStatus.NOT_FOUND);
 
     }
 
